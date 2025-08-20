@@ -1,9 +1,0 @@
-{
-	"BuildId": "33043543",
-	"Modules": 
-	{
-		"VlcMedia": "UnrealEditor-VlcMedia.dll",
-		"VlcMediaEditor": "UnrealEditor-VlcMediaEditor.dll",
-		"VlcMediaFactory": "UnrealEditor-VlcMediaFactory.dll"
-	}
-}
