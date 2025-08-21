@@ -1,0 +1,29 @@
+# Unreal Engine intermediates
+Binaries/
+DerivedDataCache/
+Intermediate/
+Saved/
+
+# Visual Studio
+.vs/
+*.suo
+*.sdf
+*.opensdf
+*.user
+*.db
+*.opendb
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Ignore unnecessary VLC folders
+ThirdParty/vlc/Win64/hrtfs/
+ThirdParty/vlc/Win64/locale/
+ThirdParty/vlc/Win64/lua/
+ThirdParty/vlc/Win64/msi/
+ThirdParty/vlc/Win64/skins/
+ThirdParty/vlc/Win64/vlc.ico
