@@ -1,26 +1,68 @@
-# Unreal Engine intermediates
+###############################################################################
+# Unreal Engine build artifacts / caches
+###############################################################################
 Binaries/
 DerivedDataCache/
 Intermediate/
 Saved/
 
-# Visual Studio
+# Optional: if you ever cook/package inside this repo
+# Saved/Cooked/
+# Build/
+
+###############################################################################
+# Visual Studio / Rider
+###############################################################################
 .vs/
 *.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.VC.db
+*.VC.opendb
 *.sdf
 *.opensdf
-*.user
-*.db
 *.opendb
 
-# OS
+###############################################################################
+# Compiled objects & build outputs (general)
+###############################################################################
+*.obj
+*.pch
+*.pdb
+*.idb
+*.ilk
+*.exp
+*.lib
+*.dll
+*.exe
+*.so
+*.dylib
+
+###############################################################################
+# Logs and misc
+###############################################################################
+*.log
 .DS_Store
 Thumbs.db
+ehthumbs.db
+desktop.ini
 
-# Logs
-*.log
+###############################################################################
+# --- Ensure LibVLC runtime is included so a fresh clone "just works" ---
+# (Order matters: these overrides come AFTER the generic *.dll ignores above.)
+###############################################################################
+!ThirdParty/vlc/Win64/
+!ThirdParty/vlc/Win64/libvlc.dll
+!ThirdParty/vlc/Win64/libvlccore.dll
+!ThirdParty/vlc/Win64/plugins/
+!ThirdParty/vlc/Win64/plugins/**
+!ThirdParty/vlc/Win64/plugins/plugins.dat
 
-# Ignore unnecessary VLC folders
+# Optional: trim non-essential VLC bits (not required by your UE plugin)
+ThirdParty/vlc/Win64/vlc.exe
+ThirdParty/vlc/Win64/npvlc.dll
+ThirdParty/vlc/Win64/axvlc.dll
 ThirdParty/vlc/Win64/hrtfs/
 ThirdParty/vlc/Win64/locale/
 ThirdParty/vlc/Win64/lua/
