@@ -6,17 +6,12 @@ DerivedDataCache/
 Intermediate/
 Saved/
 
-# Optional: if you ever cook/package inside this repo
-# Saved/Cooked/
-# Build/
-
 ###############################################################################
-# Visual Studio / Rider
+# IDE
 ###############################################################################
 .vs/
 *.suo
 *.user
-*.userosscache
 *.sln.docstates
 *.VC.db
 *.VC.opendb
@@ -25,7 +20,7 @@ Saved/
 *.opendb
 
 ###############################################################################
-# Compiled objects & build outputs (general)
+# Generic compiled outputs & junk
 ###############################################################################
 *.obj
 *.pch
@@ -38,10 +33,6 @@ Saved/
 *.exe
 *.so
 *.dylib
-
-###############################################################################
-# Logs and misc
-###############################################################################
 *.log
 .DS_Store
 Thumbs.db
@@ -49,17 +40,21 @@ ehthumbs.db
 desktop.ini
 
 ###############################################################################
-# --- Ensure LibVLC runtime is included so a fresh clone "just works" ---
-# (Order matters: these overrides come AFTER the generic *.dll ignores above.)
+# ---- Re-include LibVLC runtime so a fresh clone works ----
+# IMPORTANT: un-ignore every ancestor dir first (order matters)
 ###############################################################################
+!ThirdParty/
+!ThirdParty/vlc/
 !ThirdParty/vlc/Win64/
+
+# Required files
 !ThirdParty/vlc/Win64/libvlc.dll
 !ThirdParty/vlc/Win64/libvlccore.dll
 !ThirdParty/vlc/Win64/plugins/
 !ThirdParty/vlc/Win64/plugins/**
 !ThirdParty/vlc/Win64/plugins/plugins.dat
 
-# Optional: trim non-essential VLC bits (not required by your UE plugin)
+# Optional: exclude non-essential VLC payload to keep repo slim
 ThirdParty/vlc/Win64/vlc.exe
 ThirdParty/vlc/Win64/npvlc.dll
 ThirdParty/vlc/Win64/axvlc.dll
