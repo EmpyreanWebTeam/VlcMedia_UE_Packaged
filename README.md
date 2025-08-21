@@ -1,4 +1,4 @@
-# 📺 VlcMedia Plugin for Unreal Engine
+# 📺 VlcMedia Plugin for Unreal Engine [WIP]
 
 This plugin enables Unreal Engine to stream video content using VLC Media Player functionality. Designed for Blueprint-only projects, it includes everything you need to drop in and start playing streaming `.m3u8` sources with no source compilation required.
 
@@ -104,7 +104,7 @@ Use any of these publicly accessible streams:
 - Check the [VideoLAN documentation](https://www.videolan.org/doc/) for supported formats.
 
 ## Credits
-- Adapted for Unreal Engine 5.4.4 by Jon Edwards with help from his 8 year old son Charles.
+- Adapted for Unreal Engine 5.4.4 by Jon Edwards with help from his 9 year old son Charles.
 - <a href='https://ko-fi.com/Z8Z81F4OEC' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi6.png?v=6' border='0' alt='Buy Me a Beer at ko-fi.com' /></a>
 
 ---
