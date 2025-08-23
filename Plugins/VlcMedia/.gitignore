@@ -1,0 +1,66 @@
+###############################################################################
+# Unreal Engine build artifacts / caches
+###############################################################################
+Binaries/
+DerivedDataCache/
+Intermediate/
+Saved/
+
+###############################################################################
+# IDE
+###############################################################################
+.vs/
+*.suo
+*.user
+*.sln.docstates
+*.VC.db
+*.VC.opendb
+*.sdf
+*.opensdf
+*.opendb
+
+###############################################################################
+# Generic compiled outputs & junk
+###############################################################################
+*.obj
+*.pch
+*.pdb
+*.idb
+*.ilk
+*.exp
+*.lib
+*.dll
+*.exe
+*.so
+*.dylib
+*.log
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+###############################################################################
+# ---- Re-include LibVLC runtime so a fresh clone works ----
+# IMPORTANT: un-ignore every ancestor dir first (order matters)
+###############################################################################
+!ThirdParty/
+!ThirdParty/vlc/
+!ThirdParty/vlc/Win64/
+
+# Required files
+!ThirdParty/vlc/Win64/libvlc.dll
+!ThirdParty/vlc/Win64/libvlccore.dll
+!ThirdParty/vlc/Win64/plugins/
+!ThirdParty/vlc/Win64/plugins/**
+!ThirdParty/vlc/Win64/plugins/plugins.dat
+
+# Optional: exclude non-essential VLC payload to keep repo slim
+ThirdParty/vlc/Win64/vlc.exe
+ThirdParty/vlc/Win64/npvlc.dll
+ThirdParty/vlc/Win64/axvlc.dll
+ThirdParty/vlc/Win64/hrtfs/
+ThirdParty/vlc/Win64/locale/
+ThirdParty/vlc/Win64/lua/
+ThirdParty/vlc/Win64/msi/
+ThirdParty/vlc/Win64/skins/
+ThirdParty/vlc/Win64/vlc.ico
