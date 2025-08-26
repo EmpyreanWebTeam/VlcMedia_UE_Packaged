@@ -6,7 +6,7 @@
 *.bat text eol=crlf
 *.sh  text eol=lf
 # UE binaries never merge/diff
-*.uasset filter=lfs diff=lfs merge=lfs -text
+*.uasset binary -diff -merge
 *.umap   binary -diff -merge
 *.ubulk  binary -diff -merge
 *.uexp   binary -diff -merge
@@ -18,3 +18,12 @@
 *.dylib  binary -diff -merge
 # (Important) DO NOT apply LFS to LibVLC; keep them as normal binaries
 # (i.e., DO NOT have any filter=lfs lines for these paths)
+*.mov filter=lfs diff=lfs merge=lfs -text
+*.jpg filter=lfs diff=lfs merge=lfs -text
+*.exr filter=lfs diff=lfs merge=lfs -text
+*.mp4 filter=lfs diff=lfs merge=lfs -text
+*.wav filter=lfs diff=lfs merge=lfs -text
+*.png filter=lfs diff=lfs merge=lfs -text
+*.tga filter=lfs diff=lfs merge=lfs -text
+*.hdr filter=lfs diff=lfs merge=lfs -text
+*.dds filter=lfs diff=lfs merge=lfs -text
