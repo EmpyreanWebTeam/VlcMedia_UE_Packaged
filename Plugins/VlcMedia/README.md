@@ -14,43 +14,37 @@ This plugin enables Unreal Engine to stream video content using VLC Media Player
 ---
 
 ## 📦 Installation
+1. Copy (or clone) the **VlcMedia** folder into your project’s `Plugins/` directory:
 
-1. Download or clone the plugin into your project's `Plugins/` folder:
-
+```
 YourProject/
+├─ Plugins/
+│  └─ VlcMedia/
+│     ├─ Binaries/
+│     │  └─ Win64/…            # precompiled plugin binaries
+│     ├─ Config/               # optional
+│     ├─ Content/
+│     │  ├─ Blueprints/
+│     │  │  └─ BP_VlcTV.uasset
+│     │  ├─ Media/
+│     │  │  ├─ MP_VlcTV.uasset       # Media Player
+│     │  │  └─ MT_VlcTV.uasset       # Media Texture
+│     │  ├─ Materials/
+│     │  │  └─ M_Video_Unlit_Rot.uasset
+│     │  ├─ Icons/ (optional)
+│     │  └─ Widgets/ (optional)
+│     ├─ Resources/
+│     │  └─ Icon128.png
+│     ├─ VlcMedia.uplugin
+│     └─ README.md
+```
 
-└── Plugins/
+2. Open (or restart) your project.
+3. Enable the plugin if it isn’t auto-loaded.
 
-└── VlcMedia/
-
-
-2. The directory should look like this after packaging:
-
-Plugins/
-└── VlcMedia/
-
-├── Binaries/
-
-├── Config/
-
-├── Content/
-
-│ ├── BP_TV.uasset
-
-│ ├── YourMediaAssets...
-
-├── Resources/
-
-├── VlcMedia.uplugin
-
-└── README.md
-
-
-3. Open or restart your Unreal project.
-4. Enable the plugin if it is not already auto-loaded.
-5. Done! Ready to drag and drop the TV Blueprint into the world.
-
-> ✅ **Note:** No need to build or compile C++ modules. This is a precompiled, packaged plugin.
+> **Note**  
+> - If you plan to package **local files**, put them under `Content/Movies/` in **your project** (not inside the plugin).  
+> - If your build of the plugin is *content-only*, the `Binaries/` folder may not be present; that’s fine.
 
 ---
 
