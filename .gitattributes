@@ -1,0 +1,23 @@
+# keep this file LF to avoid EOL noise
+.gitattributes text eol=lf
+
+# normalize text
+* text=auto
+*.ps1 text eol=crlf
+*.bat text eol=crlf
+*.sh  text eol=lf
+
+# UE binaries never merge/diff
+*.uasset binary -diff -merge
+*.umap   binary -diff -merge
+*.ubulk  binary -diff -merge
+*.uexp   binary -diff -merge
+*.pak    binary -diff -merge
+*.dll    binary -diff -merge
+*.lib    binary -diff -merge
+*.pdb    binary -diff -merge
+*.so     binary -diff -merge
+*.dylib  binary -diff -merge
+
+# (Important) DO NOT apply LFS to LibVLC; keep them as normal binaries
+# (i.e., DO NOT have any filter=lfs lines for these paths)
