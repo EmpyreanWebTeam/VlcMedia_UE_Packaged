@@ -18,10 +18,7 @@ Saved/
 *.sdf
 *.opensdf
 *.opendb
-<<<<<<< HEAD
 '@ | Out-File -Encoding utf8 .gitignore
-=======
->>>>>>> f9cd8f90f6b4dba5156f40f910c19bdb2c6195d3
 
 ###############################################################################
 # Generic compiled outputs & junk
