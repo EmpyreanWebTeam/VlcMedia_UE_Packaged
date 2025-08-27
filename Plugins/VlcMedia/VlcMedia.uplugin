@@ -11,6 +11,7 @@
 	"MarketplaceURL": "",
 	"SupportURL": "",
 	"EngineVersion": "5.4.0",
+	"Type": "Runtime",
 	"CanContainContent": true,
 	"IsBetaVersion": true,
 	"Installed": true,
