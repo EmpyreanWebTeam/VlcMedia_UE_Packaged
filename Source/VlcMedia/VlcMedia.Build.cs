@@ -35,38 +35,41 @@ namespace UnrealBuildTool.Rules
 
             if (Target.Platform == UnrealTargetPlatform.Win64)
             {
-                string PluginBaseDir = "$(PluginDir)/ThirdParty/vlc/Win64";
+                // Folder inside the plugin: Plugins/VlcMedia/ThirdParty/vlc/Win64
+                string VlcRoot = Path.Combine(ModuleDirectory, "..", "..", "ThirdParty", "vlc", "Win64");
 
-                // Automatically stage the DLLs from the plugin's directory
-                RuntimeDependencies.Add($"{PluginBaseDir}/libvlc.dll", StagedFileType.NonUFS);
-                RuntimeDependencies.Add($"{PluginBaseDir}/libvlccore.dll", StagedFileType.NonUFS);
+                // Delay-load the VLC runtime (so it’s only resolved when needed)
+                PublicDelayLoadDLLs.AddRange(new[] { "libvlc.dll", "libvlccore.dll" });
 
-                PublicDelayLoadDLLs.Add("libvlc.dll");
-                PublicDelayLoadDLLs.Add("libvlccore.dll");
+                // Stage runtime files so they are copied into packaged builds & plugin packages
+                RuntimeDependencies.Add(Path.Combine(VlcRoot, "libvlc.dll"),     StagedFileType.NonUFS);
+                RuntimeDependencies.Add(Path.Combine(VlcRoot, "libvlccore.dll"), StagedFileType.NonUFS);
 
-                // Wildcard all VLC plugin files and subfolders
-                RuntimeDependencies.Add($"{PluginBaseDir}/plugins/*", StagedFileType.NonUFS);
+                // Recursively include ALL VLC plugins subfolders (important)
+                RuntimeDependencies.Add(Path.Combine(VlcRoot, "plugins", "**"),  StagedFileType.NonUFS);
             }
 
-            // Optional: support for Linux or Mac (uncomment as needed)
+            // Optional Linux/Mac support (uncomment and mirror the pattern above)
             /*
             else if (Target.Platform == UnrealTargetPlatform.Linux)
             {
-                string PluginBaseDir = "$(PluginDir)/ThirdParty/vlc/Linux";
-                RuntimeDependencies.Add($"{PluginBaseDir}/libvlc.so", StagedFileType.NonUFS);
-                RuntimeDependencies.Add($"{PluginBaseDir}/libvlccore.so", StagedFileType.NonUFS);
-                RuntimeDependencies.Add($"{PluginBaseDir}/plugins/*", StagedFileType.NonUFS);
+                string VlcRoot = Path.Combine(ModuleDirectory, "..", "..", "ThirdParty", "vlc", "Linux");
+                PublicDelayLoadDLLs.AddRange(new[] { "libvlc.so", "libvlccore.so" });
+                RuntimeDependencies.Add(Path.Combine(VlcRoot, "libvlc.so"),      StagedFileType.NonUFS);
+                RuntimeDependencies.Add(Path.Combine(VlcRoot, "libvlccore.so"),  StagedFileType.NonUFS);
+                RuntimeDependencies.Add(Path.Combine(VlcRoot, "plugins", "**"),  StagedFileType.NonUFS);
             }
             else if (Target.Platform == UnrealTargetPlatform.Mac)
             {
-                string PluginBaseDir = "$(PluginDir)/ThirdParty/vlc/Mac";
-                RuntimeDependencies.Add($"{PluginBaseDir}/libvlc.dylib", StagedFileType.NonUFS);
-                RuntimeDependencies.Add($"{PluginBaseDir}/libvlccore.dylib", StagedFileType.NonUFS);
-                RuntimeDependencies.Add($"{PluginBaseDir}/plugins/*", StagedFileType.NonUFS);
+                string VlcRoot = Path.Combine(ModuleDirectory, "..", "..", "ThirdParty", "vlc", "Mac");
+                PublicDelayLoadDLLs.AddRange(new[] { "libvlc.dylib", "libvlccore.dylib" });
+                RuntimeDependencies.Add(Path.Combine(VlcRoot, "libvlc.dylib"),     StagedFileType.NonUFS);
+                RuntimeDependencies.Add(Path.Combine(VlcRoot, "libvlccore.dylib"), StagedFileType.NonUFS);
+                RuntimeDependencies.Add(Path.Combine(VlcRoot, "plugins", "**"),    StagedFileType.NonUFS);
             }
             */
 
-            // Optional: if needed by VLC headers or your wrapper
+            // If your VLC wrapper needs them:
             // bEnableExceptions = true;
             // bUseRTTI = true;
         }
