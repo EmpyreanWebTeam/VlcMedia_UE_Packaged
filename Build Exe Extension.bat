@@ -1,0 +1,1 @@
+"D:\Program Files\Epic Games\UE_5.4\Engine\Build\BatchFiles\RunUAT.bat" BuildPlugin -Plugin="E:\Unreal Projects\5.4\VlcMedia_UE_Packaged\Plugins\VlcMedia\VlcMedia.uplugin" -Package="E:\Unreal Projects\5.4\TestDoDelete\Plugins\VlcMedia" -Rocket -VS2019

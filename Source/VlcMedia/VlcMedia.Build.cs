@@ -1,77 +1,42 @@
-namespace UnrealBuildTool.Rules
+using UnrealBuildTool;
+using System.IO;
+
+public class VlcMedia : ModuleRules
 {
-    using System.IO;
-
-    public class VlcMedia : ModuleRules
+    public VlcMedia(ReadOnlyTargetRules Target) : base(Target)
     {
-        public VlcMedia(ReadOnlyTargetRules Target) : base(Target)
+        PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+
+        DynamicallyLoadedModuleNames.AddRange(new[] { "Media" });
+
+        PrivateDependencyModuleNames.AddRange(new[]
         {
-            PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+            "Core","CoreUObject","MediaUtils","Projects","RenderCore",
+            "VlcMediaFactory","MediaAssets"
+        });
 
-            DynamicallyLoadedModuleNames.AddRange(new string[] {
-                "Media",
-            });
+        PrivateIncludePathModuleNames.AddRange(new[] { "Media" });
 
-            PrivateDependencyModuleNames.AddRange(new string[] {
-                "Core",
-                "CoreUObject",
-                "MediaUtils",
-                "Projects",
-                "RenderCore",
-                "VlcMediaFactory",
-                "MediaAssets",
-            });
+        PrivateIncludePaths.AddRange(new[]
+        {
+            "VlcMedia/Private",
+            "VlcMedia/Private/Player",
+            "VlcMedia/Private/Shared",
+            "VlcMedia/Private/Vlc",
+        });
 
-            PrivateIncludePathModuleNames.AddRange(new string[] {
-                "Media",
-            });
+        if (Target.Platform == UnrealTargetPlatform.Win64)
+        {
+            string Base = "$(PluginDir)/ThirdParty/vlc/Win64";
 
-            PrivateIncludePaths.AddRange(new string[] {
-                "VlcMedia/Private",
-                "VlcMedia/Private/Player",
-                "VlcMedia/Private/Shared",
-                "VlcMedia/Private/Vlc",
-            });
+            // Copy these into the packaged plugin/game
+            RuntimeDependencies.Add($"{Base}/libvlc.dll", StagedFileType.NonUFS);
+            RuntimeDependencies.Add($"{Base}/libvlccore.dll", StagedFileType.NonUFS);
+            RuntimeDependencies.Add($"{Base}/plugins/**", StagedFileType.NonUFS);
 
-            if (Target.Platform == UnrealTargetPlatform.Win64)
-            {
-                // Folder inside the plugin: Plugins/VlcMedia/ThirdParty/vlc/Win64
-                string VlcRoot = Path.Combine(ModuleDirectory, "..", "..", "ThirdParty", "vlc", "Win64");
-
-                // Delay-load the VLC runtime (so it’s only resolved when needed)
-                PublicDelayLoadDLLs.AddRange(new[] { "libvlc.dll", "libvlccore.dll" });
-
-                // Stage runtime files so they are copied into packaged builds & plugin packages
-                RuntimeDependencies.Add(Path.Combine(VlcRoot, "libvlc.dll"),     StagedFileType.NonUFS);
-                RuntimeDependencies.Add(Path.Combine(VlcRoot, "libvlccore.dll"), StagedFileType.NonUFS);
-
-                // Recursively include ALL VLC plugins subfolders (important)
-                RuntimeDependencies.Add(Path.Combine(VlcRoot, "plugins", "**"),  StagedFileType.NonUFS);
-            }
-
-            // Optional Linux/Mac support (uncomment and mirror the pattern above)
-            /*
-            else if (Target.Platform == UnrealTargetPlatform.Linux)
-            {
-                string VlcRoot = Path.Combine(ModuleDirectory, "..", "..", "ThirdParty", "vlc", "Linux");
-                PublicDelayLoadDLLs.AddRange(new[] { "libvlc.so", "libvlccore.so" });
-                RuntimeDependencies.Add(Path.Combine(VlcRoot, "libvlc.so"),      StagedFileType.NonUFS);
-                RuntimeDependencies.Add(Path.Combine(VlcRoot, "libvlccore.so"),  StagedFileType.NonUFS);
-                RuntimeDependencies.Add(Path.Combine(VlcRoot, "plugins", "**"),  StagedFileType.NonUFS);
-            }
-            else if (Target.Platform == UnrealTargetPlatform.Mac)
-            {
-                string VlcRoot = Path.Combine(ModuleDirectory, "..", "..", "ThirdParty", "vlc", "Mac");
-                PublicDelayLoadDLLs.AddRange(new[] { "libvlc.dylib", "libvlccore.dylib" });
-                RuntimeDependencies.Add(Path.Combine(VlcRoot, "libvlc.dylib"),     StagedFileType.NonUFS);
-                RuntimeDependencies.Add(Path.Combine(VlcRoot, "libvlccore.dylib"), StagedFileType.NonUFS);
-                RuntimeDependencies.Add(Path.Combine(VlcRoot, "plugins", "**"),    StagedFileType.NonUFS);
-            }
-            */
-
-            // If your VLC wrapper needs them:
-            // bEnableExceptions = true;
-            // bUseRTTI = true;
+            PublicDelayLoadDLLs.Add("libvlc.dll");
+            PublicDelayLoadDLLs.Add("libvlccore.dll");
         }
+
     }
 }

@@ -1,0 +1,1 @@
+cmd /k "PackageVlcPlugin.bat"
