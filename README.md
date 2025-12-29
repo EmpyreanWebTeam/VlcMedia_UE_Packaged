@@ -1,3 +1,8 @@
+![License: Proprietary](https://img.shields.io/badge/License-Proprietary-red.svg)
+![No Redistribution](https://img.shields.io/badge/Redistribution-Prohibited-critical)
+![UE5.4 Supported](https://img.shields.io/badge/UE5.4-Supported-brightgreen)
+
+
 # 📺 VlcMedia Plugin for Unreal Engine [WIP]
 
 This plugin enables Unreal Engine to stream video content using VLC Media Player functionality. Designed for Blueprint-only projects, it includes everything you need to drop in and start playing streaming `.m3u8` sources with no source compilation required.
@@ -12,6 +17,58 @@ This plugin enables Unreal Engine to stream video content using VLC Media Player
 - Integrates MediaPlayer, Texture, and Material setup automatically
 
 ---
+
+✅ Supported Platforms & Requirements
+
+The VlcMedia (libVLC) Plugin for Unreal Engine is currently focused on stable Windows x64 support. Additional platforms may be added in the future.
+
+🖥️ Supported Operating Systems
+Platform	Status	Notes
+Windows 10 / Windows 11 (64-bit)	✅ Officially Supported	Fully tested in Editor + Packaged builds. Recommended.
+
+macOS	❌ Not Supported	No prebuilt libVLC binaries provided; untested.
+
+Linux	⚠️ Not Supported	May work with custom libVLC builds, but not tested.
+
+Android	❌ Not Supported	Requires separate libVLC integration (not yet implemented).
+
+iOS	❌ Not Supported	Unreal + libVLC on iOS requires significant additional work.
+
+🧩 Supported Unreal Engine Versions
+Unreal Version	Status	Notes
+5.4.4	✅ Primary Target	Latest precompiled release is built for 5.4.4.
+
+5.2.1	⚠️ Legacy Support	Older source tag available but no longer actively developed.
+
+Other UE versions	❌ Unsupported	No active builds or testing outside 5.4.4.
+🎥 VLC / libVLC Requirements
+
+A 64-bit VLC installation is required on Windows
+The plugin dynamically loads:
+
+libvlc.dll
+
+libvlccore.dll
+
+If VLC is not installed (or the 32-bit version is installed), Unreal will not be able to initialize the media player.
+
+📦 Distribution Type
+
+Precompiled Plugin (Recommended)
+Download from Releases → drop into
+YourProject/Plugins/VlcMedia/.
+
+Source Version (5.2.1 Only)
+Provided for historical/compatibility reasons; not maintained.
+
+📝 Summary
+
+The current official target configuration is:
+
+Unreal Engine 5.4.4 + Windows 10/11 64-bit + VLC x64 installed
+
+All other platforms are considered untested or unsupported for now.
+
 
 ## 📦 Installation
 1. Copy (or clone) the **VlcMedia** folder into your project’s `Plugins/` directory:
@@ -98,12 +155,10 @@ Use any of these publicly accessible streams:
 - Check the [VideoLAN documentation](https://www.videolan.org/doc/) for supported formats.
 
 ## Credits
-- Adapted for Unreal Engine 5.4.4 by Jon Edwards with help from his 9 year old son Charles.
+- Developed by Jon Edwards
+
+- Special thanks to Charles (age 9) for testing + feature ideas 🎮
+
+- Uses VLC backend via VideoLAN / libVLC
+
 - <a href='https://ko-fi.com/Z8Z81F4OEC' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi6.png?v=6' border='0' alt='Buy Me a Beer at ko-fi.com' /></a>
-
----
-
-## 📃 License
-
-This plugin is proprietary and intended for distribution via the Unreal Engine Marketplace.  
-All rights reserved. Redistribution or resale outside of the Marketplace is prohibited.
